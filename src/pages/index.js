@@ -1,24 +1,33 @@
 import React from "react"
-import { Link as GatsbyLink } from "gatsby"
 
-function Homepage(props) {
-  const { search } = props.location
-  const link = `https://example.com/signup${search}`
+class Index extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log("constructor")
+    this.state = {}
+    console.log(this.state)
+  }
 
-  return (
-    <div>
-      <ol>
-        <li>
-          <GatsbyLink to={link}>{link} Gatsby Link</GatsbyLink>
-        </li>
-        <li>
-          <a href={`${link}`}>{link} HTML HREF</a>
-        </li>
-        <li>
-          <button onClick={() => window.open(link)}>onClick button</button>
-        </li>
-      </ol>
-    </div>
-  )
+  componentDidMount() {
+    console.log("componentDidMount")
+    const { search } = this.props.location
+    const link = `https://example.com/signup${search}`
+    this.setState({ link })
+    console.log(this.state)
+  }
+
+  render() {
+    console.log(this.state)
+    return (
+      <div>
+        <ol>
+          <li>
+            <a href={`${this.state.link}`}>{this.state.link} HTML HREF</a>
+          </li>
+        </ol>
+      </div>
+    )
+  }
 }
-export default Homepage
+
+export default Index
